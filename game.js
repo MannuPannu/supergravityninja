@@ -41,6 +41,7 @@ window.onload = function() {
     var showEndGameScreen = false;
 
     document.body.addEventListener("keydown", startGame);
+    document.body.addEventListener("touchstart", startGame);
 
     function startGame() {
 
@@ -63,6 +64,7 @@ window.onload = function() {
         loadLevel();
 
         document.body.removeEventListener("keydown", startGame);
+        document.body.removeEventListener("touchstart", startGame);
 
         events.setupPlayerEvents(ninja);
 
