@@ -4,8 +4,8 @@ var MapHelper =  function (){
 	var that = {};
 
 	that.levels = ['doorintro', 'jumping', 'gravity', 'spikesintro', 
-		'upsideintro' , 'upsideintro2', 'upsideintro3', 'bigjump', 'upandjump_e', 'thedrop',
-		'spikeandgravity', 'bigjump2', 'corridorrun_e', 'the_slide', , 'bigjumpfly' , 'upandjump', 'corridorrun_h',
+		'upsideintro' , 'upsideintro2', 'upsideintro3', 'bigjump_', 'upandjump_e', 'thedrop',
+		'spikeandgravity', 'bigjump2', 'corridorrun_e', 'the_slide', 'bigjumpfly' , 'upandjump', 'corridorrun_h',
 		  'upandjump_h', 'the_slide_insane_hell', 'the_slide_insane'];
 
 	that.loadLevel = function (levelIndex) {
@@ -22,7 +22,7 @@ var MapHelper =  function (){
 		//xmlhttp.open("GET", 'map/mapfiles/' + that.levels[levelIndex] + ".tmx", false);		
 
 		//Uncomment this one instead of the above when publishing to net
-		xmlhttp.open("GET", 'map/mapfiles/' + that.levels[levelIndex] + ".xml", false);
+		xmlhttp.open("GET", 'map/mapfiles/' + that.levels[levelIndex] + ".tmx", false);
 		xmlhttp.send();
 		xmlDoc = xmlhttp.response; 
 

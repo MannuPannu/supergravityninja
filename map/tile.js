@@ -12,18 +12,18 @@ var tile = function (gid) {
 	that.offsetBottom = 0;
 
 	if(gid){
-		that.solid = (gid > 0 && gid < 6);
+		that.solid = (gid === 1);
 	
-		that.door = gid >= 6 && gid <= 7;
+		that.door = gid >= 6 && gid <= 10;
 
 		that.deadly = (gid >= 2 && gid <= 5);
 
 		if(that.deadly) {
 
 			//Create some offsets, because not the whole tile is deadly only part of it.
-			if(gid === 2 || gid === 4) { //Up spike
-				that.offsetTop = 5;
-				that.offsetBottom = 5;
+			if(gid === 2|| gid === 4) { //Up spike
+				that.offsetTop = 2;
+				that.offsetBottom = 2;
 				that.offsetRight = 5;
 				that.offsetLeft = 5;
 			}

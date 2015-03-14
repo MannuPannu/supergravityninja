@@ -226,10 +226,6 @@ var movableEntity = function(x, y, width, height, speedX, speedY, img, accelSpee
             
         } else {
             speedX = 0;
-
-            if(that.collidingTileDeadly(collidingTilesX)) {
-                that.died = true;
-            }
         }
 
         var collidingTilesY = that.getTilesEntityCollidesWith(that.x, that.y + moveY, map);
@@ -290,10 +286,6 @@ var movableEntity = function(x, y, width, height, speedX, speedY, img, accelSpee
             }
 
              speedY = 0;
-
-            if(that.collidingTileDeadly(collidingTilesY)) {
-                that.died = true;
-            }
         }  
     };
 
@@ -321,21 +313,15 @@ var movableEntity = function(x, y, width, height, speedX, speedY, img, accelSpee
             if(collidingTiles[i].tile.solid){
                 return false;
             }
+
+            else if(collidingTiles[i].tile.deadly)
+            {
+                that.died = true; //Not so good having side effects in this "pure" function
+            }
         }
 
         return true;
     };
-
-    that.collidingTileDeadly = function(collidingTiles){
-        for(var i = 0; i < collidingTiles.length; i++) {
-             //Check if game over
-            if(collidingTiles[i].tile.deadly){
-                return true;
-            }               
-        }
-
-        return false;
-    }
 
     that.collidingTileDoor = function(collidingTiles) {
 

@@ -30,7 +30,7 @@ var animationHelper = function(animationTileSet, entity, runningFrameRate) {
 		var upSideDownOffset = that.getIsUpsideDown() ? animationTileSet.height / 2 : 0;
 
 		if(entity.died) {
-			context.drawImage(animationTileSet, deadImg.x, deadImg.y, entity.width / 2, entity.height / 2, entity.x, entity.y, 64, 64);
+			context.drawImage(animationTileSet, deadImg.x, deadImg.y + 2, entity.width / 2, entity.height / 2, entity.x, entity.y, 64, 64);
 		}
 		else if(!isBlinking || entity.isRunning || entity.isJumping) {
 			context.drawImage(animationTileSet, that.getDirection() + that.isJumping(), 
@@ -115,11 +115,6 @@ var animationHelper = function(animationTileSet, entity, runningFrameRate) {
 		yPosRunningFrame = yPos; 
 	};
 	
-	//Functions below when player is idle :P
-	that.animateIdlePlayer = function (){
-		
-		//Show player died 
-	};
 
 	that.waitForBlink = function () {
 
@@ -134,10 +129,6 @@ var animationHelper = function(animationTileSet, entity, runningFrameRate) {
 	    		 }, 90);
 	    	}, rand);
 	};	
-
-	that.playDeathAnimation = function () {
-
-	};
 
 	that.waitForBlink();
 

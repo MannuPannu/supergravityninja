@@ -13,8 +13,8 @@ window.onload = function() {
 
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var width = canvas.width = 1200;
-    var height = canvas.height = 700;
+    var width = canvas.width = window.innerWidth;
+    var height = canvas.height = window.innerHeight;
 
     window.DEBUG_MODE = false;
     window.FRAMERATE = 50;
@@ -51,7 +51,7 @@ window.onload = function() {
 
     function initGame() {
         
-        currentLevel = 0;
+        currentLevel = 12;
 
         startTimer();
 

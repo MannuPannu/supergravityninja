@@ -189,3 +189,8 @@
 
 2014-03-02
 	- Started splitting some levels, this is fun!
+
+	- Recolored character to more gender neutral
+	TODO: Make door a portal instead. Animate it :) and make it bigger. like 2x3 tiles in size
+
+	- Add tiled editor
