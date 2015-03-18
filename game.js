@@ -42,16 +42,18 @@ window.onload = function() {
 
     document.body.addEventListener("keydown", startGame);
 
-    function startGame() {
+    function startGame(e) {
 
-        showIntroScreen = false;
-        showEndGameScreen = false;
-        initGame();
+        if(e.keyCode === 32) {
+            showIntroScreen = false;
+            showEndGameScreen = false;
+            initGame();    
+        }
     }
 
     function initGame() {
         
-        currentLevel = 12;
+        currentLevel = 0;
 
         startTimer();
 
@@ -148,13 +150,14 @@ window.onload = function() {
     function renderIntroScreen() {
         context.fillStyle = "#000000";
         context.fillRect(0, 0, width, height);
-        context.font = "25px press_start_2pregular";
-        context.fillStyle = getColorEffect();
-
-        context.fillText("Gravity Ninja", 400, 200);
         context.font = "20px press_start_2pregular";
-        context.fillText("Programming and graphics by Magnus Stenqvist", 150, 300);
-        context.fillText("Press any key to start!", 350, 400);
+        
+        context.fillStyle = "#333333";
+
+        context.drawImage(_assetLoader.introScreen, window.innerWidth / 5, window.innerHeight / 9);
+
+        context.fillStyle = "#FFFFFF";
+        context.fillText("Press space key to start!", window.innerWidth / 5 + 150, window.innerHeight / 9 + (500));
     };
 
      function renderEndGameScreen() {
@@ -178,7 +181,7 @@ window.onload = function() {
         context.fillText(elapsedTimeObj.minutes + ":" + (elapsedTimeObj.seconds < 10 ? "0" : "") + elapsedTimeObj.seconds, 900, 400);
 
         context.fillStyle = getColorEffect();
-        context.fillText("Press any key to restart!", 350, 600);
+        context.fillText("Press space key to restart!", 350, 600);
     };
 
     var g = 100;

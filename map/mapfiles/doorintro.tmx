@@ -4,7 +4,7 @@
   <property name="playerstart" value="4,12"/>
   <property name="scrollable" value="1"/>
   <property name="starttext" value="Move: Left &amp; right keys. Enter portal: Down key."/>
-  <property name="togglegravity" value="1"/>
+  <property name="togglegravity" value="0"/>
  </properties>
  <tileset firstgid="1" name="map" tilewidth="32" tileheight="32">
   <image source="../../assets/img/steelblock.png" width="32" height="32"/>
@@ -535,7 +535,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="10"/>
-   <tile gid="9"/>
+   <tile gid="11"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
