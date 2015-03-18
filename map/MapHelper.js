@@ -19,10 +19,7 @@ var MapHelper =  function (){
   			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
   		}
 
-		//xmlhttp.open("GET", 'map/mapfiles/' + that.levels[levelIndex] + ".tmx", false);		
-
-		//Uncomment this one instead of the above when publishing to net
-		xmlhttp.open("GET", 'map/mapfiles/' + that.levels[levelIndex] + ".tmx", false);
+		xmlhttp.open("GET", 'map/mapfiles/' + that.levels[levelIndex] + ".tmx", false);		
 		xmlhttp.send();
 		xmlDoc = xmlhttp.response; 
 

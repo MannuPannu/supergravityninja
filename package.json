@@ -16,6 +16,13 @@
   },
   "homepage": "https://github.com/MannuPannu/supergravityninja",
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-filerev": "^2.2.0",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-usemin": "^3.0.0"
   }
 }
