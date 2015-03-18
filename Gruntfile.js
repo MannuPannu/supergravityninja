@@ -66,10 +66,10 @@ module.exports = function(grunt) {
       },
       replace: {
         example: {
-          src: ['prod/scripts/*'],             // source files array (supports minimatch)
+          src: ['prod/scripts/*'],  // source files array (supports minimatch)
           overwrite: true,
           replacements: [{
-            from: 'tmx',                   // string replacement
+            from: 'tmx',  // string replacement
             to: 'xml'
           }]
         }
