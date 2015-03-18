@@ -6,3 +6,6 @@ A game where you travel through dangerous levels avoiding spikes using your powe
 - Grunt is good for:
 	- Obscure the code
 	- 
+
+1. Run npm install
+

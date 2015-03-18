@@ -1,0 +1,21 @@
+{
+  "name": "supergravityninja",
+  "version": "1.0.0",
+  "description": "A ninja jumping game!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MannuPannu/supergravityninja.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MannuPannu/supergravityninja/issues"
+  },
+  "homepage": "https://github.com/MannuPannu/supergravityninja",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
