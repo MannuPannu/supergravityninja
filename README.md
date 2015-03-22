@@ -35,3 +35,8 @@ In root folder do:
 	like map tileset comes first etc. The things you can edit is the map layout like tiles, spikes and door positions as well as start position of player. 
 
 4. To add the map to the game, goto MapHelper.js and add the the map foo.tmx to the list "that.levels" 
+
+TODO:
+
+* Add google analytics code only when running grunt-> prod
+* Refactor out the Player specific parts in movableentity

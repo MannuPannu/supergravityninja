@@ -15,6 +15,18 @@ module.exports = function(grunt) {
               }]
           }
       },
+	includeSource: {
+	    options: {
+	      // Task-specific options go here.
+	    },
+	    your_target: {
+		files: {
+        		'prod/index.html': 'index.html'
+     		 }
+	      // Target-specific file lists and/or options go here.
+	    },
+	  },
+
      //usemin updates references automatically when doing uglify etc
     useminPrepare: {
         html: 'index.html',
@@ -83,7 +95,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-include-source');
 
   // Default task(s).
-  grunt.registerTask('build', ['clean', 'useminPrepare', 'concat', 'uglify', 'copy', 'filerev', 'usemin', 'replace']);
+  grunt.registerTask('build', ['clean', 'useminPrepare', 'concat', 'uglify', 'copy', 'filerev', 'includeSource', 'usemin', 'replace']);
 };
