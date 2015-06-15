@@ -47,6 +47,14 @@ window.onload = function() {
         if(e.keyCode === 32) {
             showIntroScreen = false;
             showEndGameScreen = false;
+
+            //Stop intro music
+            var audioPlayer = document.getElementById("introAudio");
+
+            audioPlayer.pause();
+
+            audioPlayer.currentTime = 0;
+
             initGame();    
         }
     }
