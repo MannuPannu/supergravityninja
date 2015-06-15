@@ -24,6 +24,8 @@
     "grunt-filerev": "^2.2.0",
     "grunt-include-source": "^0.5.1",
     "grunt-text-replace": "^0.4.0",
-    "grunt-usemin": "^3.0.0"
+    "grunt-usemin": "^3.0.0",
+    "howler": "^1.1.26",
+    "jquery": "^2.1.4"
   }
 }

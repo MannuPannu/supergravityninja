@@ -42,6 +42,25 @@ window.onload = function() {
 
     document.body.addEventListener("keydown", startGame);
 
+    var introMusic = new Howl({
+        urls: ['assets/sound/ninja1.mp3']
+    }).play();
+
+
+    var introMusicMuted = false;
+    //When clicking canvas with mouse mute music
+    $("#canvas").on("click", function () {
+
+        if (!introMusicMuted) {
+            introMusicMuted = true;
+            introMusic.mute();
+        } else {
+            introMusicMuted = false;
+            introMusic.unmute();
+        }
+
+    });
+
     function startGame(e) {
 
         if(e.keyCode === 32) {
@@ -49,13 +68,8 @@ window.onload = function() {
             showEndGameScreen = false;
 
             //Stop intro music
-            var audioPlayer = document.getElementById("introAudio");
-
-            audioPlayer.pause();
-
-            audioPlayer.currentTime = 0;
-
-            initGame();    
+            initGame();
+            introMusic.stop();
         }
     }
 
