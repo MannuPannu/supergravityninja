@@ -1,15 +1,17 @@
 # supergravitygirl
 A game where you travel through dangerous levels avoiding spikes using your power to change gravity.
 
-
 ** HOWO run this locally **
 
-1. Start a local python web server in the same dir as index.html
+1. Start a local python web server (Download python first :)) in the same dir as index.html
 
-	 python simplehttpserver 8000 
+	Then on Mac/Linuc run:
+		python -m SimpleHTTPServer 8000 
+
+	and on Windows:
+		python -m http.server 8000
 
 2. Goto "localhost:8000" in any browser
-
 
 ** HOWTO upload this online **
 
