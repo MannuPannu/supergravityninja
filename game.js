@@ -40,13 +40,17 @@ window.onload = function() {
     var showIntroScreen = true;
     var showEndGameScreen = false;
 
-	var speakerButton = Button(window.innerWidth - 200, 10, _assetLoader.speakerImage );
+    var speakerButton = Button(window.innerWidth /2 + 350 , 50, _assetLoader.speakerImage);
+
+    var teleprompterX = width + 100;
 
     document.body.addEventListener("keydown", startGame);
 
     var introMusic = new Howl({
-        urls: ['assets/sound/ninja1.mp3']
-    }).play();
+        urls: ['assets/sound/ninja1.mp3'],
+        loop: true,
+        autoplay: true
+    });
 
 	var viewFullScreenButton = $("#view-fullscreen");
 
@@ -54,8 +58,6 @@ window.onload = function() {
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 	
 		viewFullScreenButton.on("click", function() {
-
-			console.log("Click!");
 	   	
 			if(canvas.requestFullscreen){
 				canvas.requestFullscreen();
@@ -78,33 +80,28 @@ window.onload = function() {
     var introMusicMuted = false;
     // //When clicking canvas with mouse mute music
     $("#canvas").on("click", function (e) {
-
-		//if clicked on button
-		console.log(e.pageX);
-
-		if(speakerButton.contains(e.pageX, e.pageY)){
-			if (!introMusicMuted) {
-				introMusicMuted = true;
-				introMusic.mute();
-				speakerButton.setImage(_assetLoader.muteImage);
-			} else {
-				introMusicMuted = false;
-				introMusic.unmute();
-				speakerButton.setImage(_assetLoader.speakerImage);
-			}
+		if (speakerButton.contains(e.pageX, e.pageY)) {
+		    if (!introMusicMuted) {
+		        introMusicMuted = true;
+		        introMusic.mute();
+		        speakerButton.setImage(_assetLoader.muteImage);
+		    } else {
+		        introMusicMuted = false;
+		        introMusic.unmute();
+		        speakerButton.setImage(_assetLoader.speakerImage);
+		    }
+		} else {
+		    startGame();
 		}
     });
 
     function startGame(e) {
+        showIntroScreen = false;
+        showEndGameScreen = false;
 
-        if(e.keyCode === 32) {
-            showIntroScreen = false;
-            showEndGameScreen = false;
-
-            //Stop intro music
-            initGame();
-            introMusic.stop();
-        }
+        //Stop intro music
+        initGame();
+        introMusic.stop();
     }
 
     function initGame() {
@@ -119,9 +116,7 @@ window.onload = function() {
         ninja = player(0,0, 0, 0, _assetLoader.playerImage, width, height);
 
         loadLevel();
-
         document.body.removeEventListener("keydown", startGame);
-
         events.setupPlayerEvents(ninja);
 
         initiatingGame = false;
@@ -156,11 +151,17 @@ window.onload = function() {
             stopTimer();
             gameOver = false;
             document.body.addEventListener("keydown", startGame);
+            document.body.addEventListener("touchstart", startGame);
         }
 
         if(showIntroScreen)
         {
             renderIntroScreen();
+            teleprompterX -= 4;
+
+            if (teleprompterX < -4500) {
+                teleprompterX = width + 100;
+            }
         }
         else if (showEndGameScreen){
             renderEndGameScreen();
@@ -209,12 +210,21 @@ window.onload = function() {
         context.font = "20px press_start_2pregular";
         
         context.fillStyle = "#333333";
-
         context.drawImage(_assetLoader.introScreen, window.innerWidth / 5, window.innerHeight / 9 - 100);
 
+        //Create teleprompter
         context.fillStyle = "#FFFFFF";
-        context.fillText("Press space key to start!", window.innerWidth / 5 + 150, window.innerHeight / 9 + (400));
-		speakerButton.draw(context);
+        context.fillText("Game design, programming, music and gfx done by: Magnus Stenqvist @ Tape Worm Productions. Contact: magnus.p.stenqvist@gmail.com. Todo: Add mobile support with touch, add moving objects, add påskägg!! Last but not least: HI MOM!"
+            , window.innerWidth / 22 + teleprompterX, 25);
+
+        context.fillStyle = "#00FFCC";
+        context.fillText("Press key/touch screen to start!", window.innerWidth / 5 + 150, window.innerHeight / 9 + (400));
+
+        //Draw black boxes wich acts as borders
+        context.fillStyle = "#000000";
+        context.fillRect(0, 0, window.innerWidth / 5, height);
+        context.fillRect((window.innerWidth / 5) + _assetLoader.introScreen.width, 0, width - ((window.innerWidth / 5) + _assetLoader.introScreen.width), height);
+        speakerButton.draw(context);
     };
 
      function renderEndGameScreen() {
@@ -238,12 +248,12 @@ window.onload = function() {
         context.fillText(elapsedTimeObj.minutes + ":" + (elapsedTimeObj.seconds < 10 ? "0" : "") + elapsedTimeObj.seconds, 900, 400);
 
         context.fillStyle = getColorEffect();
-        context.fillText("Press space key to restart!", 350, 600);
+        context.fillText("Press any key/Touch screen to restart!", 350, 600);
     };
 
     var g = 100;
     var r = 100;
-    var b = 150
+    var b = 150;
 
     var goUp = true;
 
