@@ -48,6 +48,32 @@ window.onload = function() {
         urls: ['assets/sound/ninja1.mp3']
     }).play();
 
+	var viewFullScreenButton = $("#view-fullscreen");
+
+	//Setup full screen button when mobile
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	
+		viewFullScreenButton.on("click", function() {
+
+			console.log("Click!");
+	   	
+			if(canvas.requestFullscreen){
+				canvas.requestFullscreen();
+			}
+		    else if (canvas.msRequestFullscreen) {
+				canvas.msRequestFullscreen();
+			}
+		    else if (canvas.mozRequestFullScreen) {
+				canvas.mozRequestFullScreen();
+			}
+		    else if (canvas.webkitRequestFullScreen) {
+				canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			}
+		});
+	}
+	else {
+		viewFullScreenButton.css("display", "none");
+	}
 
     var introMusicMuted = false;
     // //When clicking canvas with mouse mute music
