@@ -45,6 +45,7 @@ window.onload = function() {
     var teleprompterX = width + 100;
 
     document.body.addEventListener("keydown", startGame);
+    //document.body.addEventListener("touchstart", startGame);
 
     var introMusic = new Howl({
         urls: ['assets/sound/ninja1.mp3'],
@@ -55,30 +56,28 @@ window.onload = function() {
     var introMusicMuted = false;
     // //When clicking canvas with mouse mute music
     $("#canvas").on("click", function (e) {
-
-		if(speakerButton.contains(e.pageX, e.pageY)){
-			if (!introMusicMuted) {
-				introMusicMuted = true;
-				introMusic.mute();
-				speakerButton.setImage(_assetLoader.muteImage);
-			} else {
-				introMusicMuted = false;
-				introMusic.unmute();
-				speakerButton.setImage(_assetLoader.speakerImage);
-			}
+		if (speakerButton.contains(e.pageX, e.pageY)) {
+		    if (!introMusicMuted) {
+		        introMusicMuted = true;
+		        introMusic.mute();
+		        speakerButton.setImage(_assetLoader.muteImage);
+		    } else {
+		        introMusicMuted = false;
+		        introMusic.unmute();
+		        speakerButton.setImage(_assetLoader.speakerImage);
+		    }
+		} else {
+		    startGame();
 		}
     });
 
     function startGame(e) {
+        showIntroScreen = false;
+        showEndGameScreen = false;
 
-        if(e.keyCode === 32) {
-            showIntroScreen = false;
-            showEndGameScreen = false;
-
-            //Stop intro music
-            initGame();
-            introMusic.stop();
-        }
+        //Stop intro music
+        initGame();
+        introMusic.stop();
     }
 
     function initGame() {
@@ -93,9 +92,7 @@ window.onload = function() {
         ninja = player(0,0, 0, 0, _assetLoader.playerImage, width, height);
 
         loadLevel();
-
         document.body.removeEventListener("keydown", startGame);
-
         events.setupPlayerEvents(ninja);
 
         initiatingGame = false;
@@ -130,6 +127,7 @@ window.onload = function() {
             stopTimer();
             gameOver = false;
             document.body.addEventListener("keydown", startGame);
+            document.body.addEventListener("touchstart", startGame);
         }
 
         if(showIntroScreen)
