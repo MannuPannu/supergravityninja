@@ -59,7 +59,7 @@ module.exports = function(grunt) {
         },
         misc: {
           expand: true,
-          src: ["assets/img/*", "fonts/*"],
+          src: ["assets/img/*", "assets/sound/*", "fonts/*"],
           dest: 'prod/'
         },
         mapfiles: {
