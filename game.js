@@ -40,6 +40,8 @@ window.onload = function() {
     var showIntroScreen = true;
     var showEndGameScreen = false;
 
+	var speakerButton = Button(window.innerWidth - 200, 10, _assetLoader.speakerImage );
+
     document.body.addEventListener("keydown", startGame);
 
     var introMusic = new Howl({
@@ -48,17 +50,23 @@ window.onload = function() {
 
 
     var introMusicMuted = false;
-    //When clicking canvas with mouse mute music
-    $("#canvas").on("click", function () {
+    // //When clicking canvas with mouse mute music
+    $("#canvas").on("click", function (e) {
 
-        if (!introMusicMuted) {
-            introMusicMuted = true;
-            introMusic.mute();
-        } else {
-            introMusicMuted = false;
-            introMusic.unmute();
-        }
+		//if clicked on button
+		console.log(e.pageX);
 
+		if(speakerButton.contains(e.pageX, e.pageY)){
+			if (!introMusicMuted) {
+				introMusicMuted = true;
+				introMusic.mute();
+				speakerButton.setImage(_assetLoader.muteImage);
+			} else {
+				introMusicMuted = false;
+				introMusic.unmute();
+				speakerButton.setImage(_assetLoader.speakerImage);
+			}
+		}
     });
 
     function startGame(e) {
@@ -176,10 +184,11 @@ window.onload = function() {
         
         context.fillStyle = "#333333";
 
-        context.drawImage(_assetLoader.introScreen, window.innerWidth / 5, window.innerHeight / 9);
+        context.drawImage(_assetLoader.introScreen, window.innerWidth / 5, window.innerHeight / 9 - 100);
 
         context.fillStyle = "#FFFFFF";
-        context.fillText("Press space key to start!", window.innerWidth / 5 + 150, window.innerHeight / 9 + (500));
+        context.fillText("Press space key to start!", window.innerWidth / 5 + 150, window.innerHeight / 9 + (400));
+		speakerButton.draw(context);
     };
 
      function renderEndGameScreen() {
