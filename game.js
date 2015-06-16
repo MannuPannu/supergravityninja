@@ -10,11 +10,17 @@ var requestAnimFrame = (function(){
 })();
 
 window.onload = function() {
+	var mobile = false;
+	//Check for mobile or desktop
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
+	{
+		mobile = true;	
+	}
 
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var width = canvas.width = window.innerWidth;
-    var height = canvas.height = window.innerHeight;
+    var width = canvas.width = 1200;
+    var height = canvas.height = 700;
 
     window.DEBUG_MODE = false;
     window.FRAMERATE = 50;
@@ -55,7 +61,7 @@ window.onload = function() {
 	var viewFullScreenButton = $("#view-fullscreen");
 
 	//Setup full screen button when mobile
-	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	if(mobile) {
 	
 		viewFullScreenButton.on("click", function() {
 	   	
