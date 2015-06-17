@@ -9,8 +9,10 @@ var requestAnimFrame = (function(){
          };
 })();
 
-window.onload = function() {
-	var mobile = false;
+window.onload = function () {
+
+    var mobile = false;
+
 	//Check for mobile or desktop
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )
 	{
@@ -19,8 +21,8 @@ window.onload = function() {
 
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var width = canvas.width = 1200;
-    var height = canvas.height = 700;
+    var width = canvas.width = window.innerWidth;
+    var height = canvas.height = window.innerHeight;
 
     window.DEBUG_MODE = false;
     window.FRAMERATE = 50;
@@ -55,27 +57,27 @@ window.onload = function() {
     var introMusic = new Howl({
         urls: ['assets/sound/ninja1.mp3'],
         loop: true,
-        autoplay: true
+        autoplay:false 
     });
 
-	var viewFullScreenButton = $("#view-fullscreen");
+    var viewFullScreenButton = $("#view-fullscreen");
+    var gameArea = document.getElementById("gameArea"); 
 
 	//Setup full screen button when mobile
 	if(mobile) {
-	
 		viewFullScreenButton.on("click", function() {
 	   	
-			if(canvas.requestFullscreen){
-				canvas.requestFullscreen();
+		    if (canvas.requestFullscreen) {
+		        canvas.requestFullscreen();
 			}
 		    else if (canvas.msRequestFullscreen) {
-				canvas.msRequestFullscreen();
+		        canvas.msRequestFullscreen();
 			}
 		    else if (canvas.mozRequestFullScreen) {
-				canvas.mozRequestFullScreen();
+		        canvas.mozRequestFullScreen();
 			}
 		    else if (canvas.webkitRequestFullScreen) {
-				canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+		        canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
 			}
 		});
 	}
