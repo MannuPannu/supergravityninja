@@ -26,17 +26,15 @@ var player = function(x, y, speedX, speedY, img, screenWidth, screenHeight) {
 
 	};
 
-	that.toggleGravity = function() {
-		if(that.canToggleGravity) {
-			that.gravityVel *= -1;
-		}
-	}
+    that.toggleGravity = function() {
+        if (that.canToggleGravity) {
+            that.gravityVel *= -1;
+        }
+    };
 
-	that.tryWalkIntoDoor = function() {
-		if(that.overDoor){
-			that.walkIntoDoor = true;
-		}
-	}
+    that.isOverDoor = function() {
+        return that.overDoor;
+    };
 
 	that.setMap = function(map) {
 		that.x = map.playerStartPos.x;

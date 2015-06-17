@@ -324,16 +324,15 @@ var movableEntity = function(x, y, width, height, speedX, speedY, img, accelSpee
     };
 
     that.collidingTileDoor = function(collidingTiles) {
-
-        for(var i = 0; i < collidingTiles.length; i++) {
-             //Check if game over
-            if(collidingTiles[i].tile.door){
+        for (var i = 0; i < collidingTiles.length; i++) {
+            //Check if game over
+            if (collidingTiles[i].tile.door) {
                 return true;
-            }               
+            }
         }
 
         return false;
-    }
+    };
 
     //Calculates the next position this entity will be at, if applying the current x and y speeds
     that.updateSpeed = function() {

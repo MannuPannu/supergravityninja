@@ -78,19 +78,6 @@ var events = {
                     player.toggleGravity();
                 }
 
-                if (e.keyCode === actions.ARROW_KEY_DOWN) {
-                    if (isKeyDown && canWalkIntoDoor) {
-                        player.tryWalkIntoDoor();
-                        canWalkIntoDoor = false;
-
-
-                    }
-
-                    if (!isKeyDown) {
-                        canWalkIntoDoor = true;
-                    }
-                }
-
                 if (e.keyCode === actions.PLAYER_JUMP) {
 
                     if (isKeyDown && canJump) {
@@ -102,7 +89,6 @@ var events = {
                     if (!isKeyDown) { //Key up
                         canJump = true;
                     }
-
                 }
 
                 e.preventDefault();

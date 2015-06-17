@@ -61,7 +61,6 @@ window.onload = function () {
     });
 
     var viewFullScreenButton = $("#view-fullscreen");
-    var gameArea = document.getElementById("gameArea"); 
 
 	//Setup full screen button when mobile
 	if(mobile) {
@@ -189,8 +188,7 @@ window.onload = function () {
                 killCount += 1;
             }
 
-            if(ninja.walkIntoDoor) {
-                ninja.walkIntoDoor = false;
+            if(ninja.isOverDoor()) {
                 currentLevel += 1;
                 loadLevel();
             }
