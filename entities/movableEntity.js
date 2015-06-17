@@ -88,9 +88,9 @@ var movableEntity = function(x, y, width, height, speedX, speedY, img, accelSpee
 		goRight = val;
 	};
 
-	that.jump = function(val) {
-		jump = val;
-	}
+    that.jump = function(val) {
+        jump = val;
+    };
 
 	that.updateMovement = function(map) {
 

@@ -107,6 +107,8 @@ window.onload = function () {
         showIntroScreen = false;
         showEndGameScreen = false;
 
+        $("#canvas").off();
+
         //Stop intro music
         initGame();
         introMusic.stop();
@@ -125,7 +127,7 @@ window.onload = function () {
 
         loadLevel();
         document.body.removeEventListener("keydown", startGame);
-        events.setupPlayerEvents(ninja);
+        events.setupEvents(ninja);
 
         initiatingGame = false;
     };
@@ -159,7 +161,6 @@ window.onload = function () {
             stopTimer();
             gameOver = false;
             document.body.addEventListener("keydown", startGame);
-            document.body.addEventListener("touchstart", startGame);
         }
 
         if(showIntroScreen)
