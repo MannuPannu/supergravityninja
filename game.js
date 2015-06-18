@@ -27,7 +27,7 @@ window.onload = function () {
     window.DEBUG_MODE = false;
     window.FRAMERATE = 50;
 
-    var mapHelper = MapHelper();
+    var mapHelper = MapHelper(mobile);
 
     var texthandler = TextHandler(width);
 
@@ -155,9 +155,9 @@ window.onload = function () {
     function gameLoop() {
         requestAnimationFrame(gameLoop);
 
-        //Always make sure canvas is resized if window size changes
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        ////Always make sure canvas is resized if window size changes
+        //width = canvas.width = window.innerWidth;
+        //height = canvas.height = window.innerHeight;
 
         if(gameOver) {
             showEndGameScreen = true;
@@ -171,7 +171,7 @@ window.onload = function () {
             renderIntroScreen();
             teleprompterX -= 4;
 
-            if (teleprompterX < -4500) {
+            if (teleprompterX < -6500) {
                 teleprompterX = width + 100;
             }
         }
@@ -226,7 +226,7 @@ window.onload = function () {
 
         //Create teleprompter
         context.fillStyle = "#FFFFFF";
-        context.fillText("Game design, programming, music and gfx done by: Magnus Stenqvist @ Tape Worm Productions. Contact: magnus.p.stenqvist@gmail.com. Todo: Add mobile support with touch, add moving objects, add påskägg!! Last but not least: HI MOM!"
+        context.fillText("Game design, programming, music and gfx done by: Magnus Stenqvist @ Tape Worm Productions. Contact: magnus.p.stenqvist@gmail.com. DONE: Added mobile support! You can now play in your phone, yeah! TODO: Add better steering capability while tilting device. Add scoreboard. Add awesome outro sequence. Last but not least: Hi mom!"
             , window.innerWidth / 22 + teleprompterX, 25);
 
         context.fillStyle = "#00FFCC";

@@ -3,7 +3,7 @@
  <properties>
   <property name="playerstart" value="2,16"/>
   <property name="scrollable" value="0"/>
-  <property name="starttext" value="Press space to jump"/>
+  <property name="starttext" value="Press space to jump!;Tap left half of screen to jump!"/>
   <property name="togglegravity" value="0"/>
  </properties>
  <tileset firstgid="1" name="map" tilewidth="32" tileheight="32">

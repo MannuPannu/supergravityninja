@@ -3,7 +3,7 @@
  <properties>
   <property name="playerstart" value="4,12"/>
   <property name="scrollable" value="1"/>
-  <property name="starttext" value="Move: Left &amp; right keys. Enter portal: Down key."/>
+  <property name="starttext" value="Move: Left &amp; right keys.;Move: Tilt device! :)"/>
   <property name="togglegravity" value="0"/>
  </properties>
  <tileset firstgid="1" name="map" tilewidth="32" tileheight="32">

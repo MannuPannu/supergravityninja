@@ -1,5 +1,5 @@
 
-var MapHelper =  function (){
+var MapHelper =  function (isMobile){
 
 	var that = {};
 
@@ -113,11 +113,24 @@ var MapHelper =  function (){
 				playerStartPos.y = parseInt(playerStartPosLst[1]);
 			}
 
-			if(properties[i].getAttribute("name") === 'starttext') {
-				levelStartText = properties[i].getAttribute("value");
-			}
+		    if (properties[i].getAttribute("name") === 'starttext') {
+		        if (properties[i].getAttribute("value").indexOf(';') >= 0) {
 
-			if(properties[i].getAttribute("name") === 'togglegravity') {
+		            var startTexts = properties[i].getAttribute("value").split(";");
+
+
+		            if (!isMobile) {
+		                levelStartText = startTexts[0];
+		            } else {
+		                levelStartText = startTexts[1];
+		            }
+
+		        } else {
+		            levelStartText = properties[i].getAttribute("value");
+		        }
+		    }
+
+		    if(properties[i].getAttribute("name") === 'togglegravity') {
 				canToggleGravity = parseInt(properties[i].getAttribute("value")) === 1 ? true : false;
 			}			
 

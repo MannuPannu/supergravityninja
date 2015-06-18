@@ -10,38 +10,74 @@ var events = {
             var canJump = true;
             var canWalkIntoDoor = true;
 
-            //var TILT_NEUTRAL = "neutral",
-            //    TILT_CCW = "counter-clockwise",
-            //    TILT_CW = "clockwise";
-            //var TILT_THRESHOLD = 10;
-            //var currentTilt = TILT_NEUTRAL;
+            var TILT_NEUTRAL = "neutral",
+             TILT_CCW = "counter-clockwise",
+             TILT_CW = "clockwise";
 
-            //function betaToTilt(beta) {
-            //    if (Math.abs(beta) < TILT_THRESHOLD) {
-            //        return TILT_NEUTRAL;
-            //    } else if (beta >= TILT_THRESHOLD) {
-            //        return TILT_CCW;
-            //    } else if (beta <= -TILT_THRESHOLD) {
-            //        return TILT_CW;
-            //    }
-            //}
+            var TILT_THRESHOLD = 5;
+        
+            var currentTilt = TILT_NEUTRAL;
 
-            //gyro.frequency = 60;
-            //gyro.startTracking(function (o) {
-            //    var newTilt = betaToTilt(o.beta);
-            //    if (newTilt != currentTilt) {
-            //        alert('Tilt went from ' + currentTilt + ' to ' + newTilt);
-            //    }
+            function betaToTilt(beta) {
+                if (Math.abs(beta) < TILT_THRESHOLD) {
+                    return TILT_NEUTRAL;
+                } else if (beta >= TILT_THRESHOLD) {
+                    return TILT_CCW;
+                } else if (beta <= -TILT_THRESHOLD) {
+                    return TILT_CW;
+                }
+            };
 
-            //    currentTilt = newTilt;
-            //});
+            gyro.frequency = 30;
+            gyro.startTracking(function (o) {
 
-            // Jump on tap 
+                // `o` provides the three Euler angles (alpha, beta, gamma) telling the
+                // orientation of the user's device. See here https://en.wikipedia.org/wiki/Euler_angles
+                // for how they work.
 
-            document.body.addEventListener("touchstart", function(e) {
-                if (canJump) {
-                    player.jump(true);
-                    canJump = false;
+                var newTilt = betaToTilt(o.beta);
+                if (newTilt != currentTilt) {
+                    console.debug('Tilt went from ' + currentTilt + ' to ' + newTilt);
+                }
+
+                // FIXME: this would be clearer if the player object instead just
+                // acted as a state machine - now we have to remember if we were
+                // in "go left" or "go right" mode.
+                switch (currentTilt) {
+                    case TILT_NEUTRAL:
+                        player.setGoLeft(false);
+                        player.setGoRight(false);
+                        break;
+                    case TILT_CW:
+                        player.setGoRight(false);
+                        player.setGoLeft(true);
+                        break;
+                    case TILT_CCW:
+                        player.setGoLeft(false);
+                        player.setGoRight(true);
+                        break;
+                }
+
+                // TODO: perhaps use the gamma angle to trigger up/down?
+
+                currentTilt = newTilt;
+            });
+
+            document.body.addEventListener("touchstart", function (e) {
+
+                var sourceElement = e.srcElement;
+
+                var posX = e.touches[0].clientX;
+                var posY = e.touches[0].clientY;
+
+
+                if (posX < sourceElement.clientWidth / 2) {
+                    if (canJump) {
+                        player.jump(true);
+                        canJump = false;
+                    }
+                } else {
+                    player.toggleGravity();
                 }
             });
 

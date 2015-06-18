@@ -3,7 +3,7 @@
  <properties>
   <property name="playerstart" value="2,12"/>
   <property name="scrollable" value="0"/>
-  <property name="starttext" value="Press UP to toggle gravitational pull"/>
+  <property name="starttext" value="Press UP to toggle gravitational pull;Tap right half of screen to toggle gravity!"/>
   <property name="togglegravity" value="1"/>
  </properties>
  <tileset firstgid="1" name="map" tilewidth="32" tileheight="32">
