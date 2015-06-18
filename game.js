@@ -57,7 +57,7 @@ window.onload = function () {
     var introMusic = new Howl({
         urls: ['assets/sound/ninja1.mp3'],
         loop: true,
-        autoplay:false 
+        autoplay:true 
     });
 
     var viewFullScreenButton = $("#view-fullscreen");
@@ -155,6 +155,10 @@ window.onload = function () {
     function gameLoop() {
         requestAnimationFrame(gameLoop);
 
+        //Always make sure canvas is resized if window size changes
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+
         if(gameOver) {
             showEndGameScreen = true;
             stopTimer();
@@ -193,9 +197,10 @@ window.onload = function () {
                 loadLevel();
             }
         }
-    };
+    };  
 
     function render() {
+
         //render
         context.fillStyle = "#000000";
         context.fillRect(0, 0, width, height);
