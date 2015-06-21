@@ -164,6 +164,7 @@ window.onload = function () {
             stopTimer();
             gameOver = false;
             document.body.addEventListener("keydown", startGame);
+			$("#canvas").on("click", startGame);	
         }
 
         if(showIntroScreen)
